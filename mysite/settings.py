@@ -39,6 +39,30 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 
+PEREGRINE_APPS = [
+    'peregrine',
+    'bootstrap4',
+    'wagtailcodeblock',
+    'wagtailcontentstream',
+    'taggit',
+    'modelcluster',
+
+    'wagtail.core',
+    'wagtail.admin',
+    'wagtail.documents',
+    'wagtail.snippets',
+    'wagtail.users',
+    'wagtail.images',
+    'wagtail.embeds',
+    'wagtail.search',
+    'wagtail.sites',
+    'wagtail.contrib.settings',
+    'wagtail.contrib.modeladmin',
+    'wagtail.contrib.table_block',
+]
+
+INSTALLED_APPS += PEREGRINE_APPS
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -48,6 +72,14 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+PEREGRINE_MIDDLEWARE = [
+    'wagtail.core.middleware.SiteMiddleware',
+]
+
+MIDDLEWARE += PEREGRINE_MIDDLEWARE
+
+WAGTAIL_SITE_NAME = 'My Blog'
 
 ROOT_URLCONF = 'mysite.urls'
 
@@ -62,6 +94,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'wagtail.contrib.settings.context_processors.settings',
             ],
         },
     },
